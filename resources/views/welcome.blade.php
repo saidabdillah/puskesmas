@@ -539,7 +539,8 @@
             </div>
           </div>
         </div>
-      </section>
+
+    </section>
       <!-- /Featured Departments Section -->
 
       <!-- Featured Services Section -->
@@ -556,7 +557,8 @@
 
         <div class="container" data-aos="fade-up" data-aos-delay="100">
           <div class="row gy-4">
-            <div
+            @foreach($posts as $post)
+                <div
               class="col-lg-4 col-md-6"
               data-aos="fade-up"
               data-aos-delay="200"
@@ -567,18 +569,16 @@
                 </div>
                 <div class="service-image">
                   <img
-                    src="{{ asset('assets/img/health/cardiology-2.webp') }}"
+                    src="{{ asset('storage/' . $post->image) }}"
                     alt="Service"
                     class="img-fluid"
                     loading="lazy"
                   />
                 </div>
                 <div class="service-content">
-                  <h3>Cardiology Excellence</h3>
+                  <h3>{{ $post->title }}</h3>
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vestibulum ante ipsum primis in faucibus orci luctus et
-                    ultrices posuere cubilia curae.
+                    {!! Str::limit($post->body, 100) !!}
                   </p>
                   <a href="#" class="service-link"
                     >Learn More <i class="fas fa-arrow-right"></i
@@ -586,170 +586,18 @@
                 </div>
               </div>
             </div>
-            <!-- End Service Card -->
-
-            <div
-              class="col-lg-4 col-md-6"
-              data-aos="fade-up"
-              data-aos-delay="300"
-            >
-              <div class="service-card">
-                <div class="service-icon">
-                  <i class="fas fa-brain"></i>
-                </div>
-                <div class="service-image">
-                  <img
-                    src="{{ asset('assets/img/health/neurology-3.webp') }}"
-                    alt="Service"
-                    class="img-fluid"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="service-content">
-                  <h3>Neurology Care</h3>
-                  <p>
-                    Sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi.
-                  </p>
-                  <a href="#" class="service-link"
-                    >Learn More <i class="fas fa-arrow-right"></i
-                  ></a>
-                </div>
-              </div>
-            </div>
-            <!-- End Service Card -->
-
-            <div
-              class="col-lg-4 col-md-6"
-              data-aos="fade-up"
-              data-aos-delay="400"
-            >
-              <div class="service-card">
-                <div class="service-icon">
-                  <i class="fas fa-bone"></i>
-                </div>
-                <div class="service-image">
-                  <img
-                    src="{{ asset('assets/img/health/orthopedics-1.webp') }}"
-                    alt="Service"
-                    class="img-fluid"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="service-content">
-                  <h3>Orthopedic Surgery</h3>
-                  <p>
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                    occaecat cupidatat non proident.
-                  </p>
-                  <a href="#" class="service-link"
-                    >Learn More <i class="fas fa-arrow-right"></i
-                  ></a>
-                </div>
-              </div>
-            </div>
-            <!-- End Service Card -->
-
-            <div
-              class="col-lg-4 col-md-6"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
-              <div class="service-card">
-                <div class="service-icon">
-                  <i class="fas fa-baby"></i>
-                </div>
-                <div class="service-image">
-                  <img
-                    src="{{ asset('assets/img/health/pediatrics-4.webp') }}"
-                    alt="Service"
-                    class="img-fluid"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="service-content">
-                  <h3>Pediatric Care</h3>
-                  <p>
-                    Sunt in culpa qui officia deserunt mollit anim id est
-                    laborum. Sed ut perspiciatis unde omnis iste natus error sit
-                    voluptatem accusantium.
-                  </p>
-                  <a href="#" class="service-link"
-                    >Learn More <i class="fas fa-arrow-right"></i
-                  ></a>
-                </div>
-              </div>
-            </div>
-            <!-- End Service Card -->
-
-            <div
-              class="col-lg-4 col-md-6"
-              data-aos="fade-up"
-              data-aos-delay="300"
-            >
-              <div class="service-card">
-                <div class="service-icon">
-                  <i class="fas fa-ribbon"></i>
-                </div>
-                <div class="service-image">
-                  <img
-                    src="{{ asset('assets/img/health/oncology-2.webp') }}"
-                    alt="Service"
-                    class="img-fluid"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="service-content">
-                  <h3>Oncology Treatment</h3>
-                  <p>
-                    At vero eos et accusamus et iusto odio dignissimos ducimus
-                    qui blanditiis praesentium voluptatum deleniti atque
-                    corrupti quos dolores et quas molestias.
-                  </p>
-                  <a href="#" class="service-link"
-                    >Learn More <i class="fas fa-arrow-right"></i
-                  ></a>
-                </div>
-              </div>
-            </div>
-            <!-- End Service Card -->
-
-            <div
-              class="col-lg-4 col-md-6"
-              data-aos="fade-up"
-              data-aos-delay="400"
-            >
-              <div class="service-card">
-                <div class="service-icon">
-                  <i class="fas fa-flask"></i>
-                </div>
-                <div class="service-image">
-                  <img
-                    src="{{ asset('assets/img/health/laboratory-3.webp') }}"
-                    alt="Service"
-                    class="img-fluid"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="service-content">
-                  <h3>Laboratory Services</h3>
-                  <p>
-                    Temporibus autem quibusdam et aut officiis debitis aut rerum
-                    necessitatibus saepe eveniet ut et voluptates repudiandae
-                    sint et molestiae non recusandae.
-                  </p>
-                  <a href="#" class="service-link"
-                    >Learn More <i class="fas fa-arrow-right"></i
-                  ></a>
-                </div>
-              </div>
-            </div>
+            @endforeach
             <!-- End Service Card -->
           </div>
         </div>
+        <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="700">
+            <a href="specialists.html" class="view-all-link">
+                Browse Complete Directory
+                <i class="bi bi-chevron-right"></i>
+            </a>
+        </div>
       </section>
+
       <!-- /Featured Services Section -->
 
       <!-- Find A Doctor Section -->

@@ -39,14 +39,44 @@
                         <div class="card stretch stretch-full">
                             <div class="card-header">
                                 <h5 class="card-title">Berita</h5>
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
                                 <div class="card-header-action">
                                 </div>
                             </div>
-                            <div class="card-body custom-card-action">
-                                <div id="editor">
-                                    <p>Hello from CKEditor 5 with jQuery!</p>
+                            <form method="POST" action="{{ route('admin.berita.store') }}" enctype="multipart/form-data" class="card-body custom-card-action">
+                                @csrf
+                                <div class="form-group mb-4">
+                                    <label class="form-label">Judul</label>
+                                    <input type="text" class="form-control" name="title">
                                 </div>
-                            </div>
+
+                                <img id="img-preview"
+                                    class="img-fluid rounded d-none"
+                                    style="max-height: 200px;">
+
+                                <div class="mb-3">
+                                    <label class="form-label">Upload Gambar</label>
+                                    <input type="file"
+                                        name="image"
+                                        class="form-control"
+                                        accept="image/*"
+                                        onchange="previewImage(this)">
+                                </div>
+                                <label for="x" class="form-label">body</label>
+                                <input id="x" type="hidden" name="body">
+                                <trix-editor input="x"></trix-editor>
+                                <button type="submit" class="btn btn-primary mt-3">
+                                    Simpan
+                                </button>
+                            </form>
                         </div>
                     </div>
                     <!--! END: [Team Progress] !-->
@@ -74,34 +104,57 @@
 
     </main>
 
-    <script src="https://cdn.ckeditor.com/ckeditor5/47.4.0/ckeditor5.umd.js"></script>
     <script>
-		$( document ).ready( () => {
-			const {
-				ClassicEditor,
-				Essentials,
-				Bold,
-				Italic,
-				Font,
-				Paragraph
-			} = CKEDITOR;
+        document.addEventListener("trix-file-accept", function (event) {
+            event.preventDefault();
+        });
 
-			ClassicEditor
-				.create( $( '#editor' )[ 0 ], {
-					licenseKey: 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3ODI3Nzc1OTksImp0aSI6ImNhMTQxMjJkLWMzMmEtNDAwNC04YzBjLTExMTUzYjI2NTQxZCIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiXSwiZmVhdHVyZXMiOlsiRFJVUCIsIkUyUCIsIkUyVyJdLCJ2YyI6ImE5YTVmMzNkIn0.T3ozQ5aspPNJQOscp9aIo8Q_-c7tsAaVm5M-kbFsGNDSs-jh_Fre0FUREspSeSyzGc8h9OOByJf5Cw2I8U-jWw',
-					plugins: [ Essentials, Bold, Italic, Font, Paragraph ],
-					toolbar: [
-						'undo', 'redo', '|', 'bold', 'italic', '|',
-						'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor'
-					]
-				} )
-				.then( editor => {
-					// Editor initialized successfully.
-					console.log( 'CKEditor 5 initialized with jQuery!' );
-				} )
-				.catch( error => {
-					console.error( 'Error initializing CKEditor 5:', error );
-				} );
-		} );
-	</script>
+        function previewImage(input) {
+            const preview = document.getElementById('img-preview');
+
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    preview.classList.remove('d-none');
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        // document.addEventListener("trix-attachment-add", function (event) {
+        //     const attachment = event.attachment;
+
+        //     if (attachment.file) {
+        //         uploadTrixImage(attachment);
+        //     }
+        // });
+
+        // function uploadTrixImage(attachment) {
+        //     const formData = new FormData();
+        //     formData.append("file", attachment.file);
+
+        //     const xhr = new XMLHttpRequest();
+        //     xhr.open("POST", "/upload-trix-image.php", true);
+
+        //     xhr.upload.onprogress = function (e) {
+        //         const progress = e.loaded / e.total * 100;
+        //         attachment.setUploadProgress(progress);
+        //     };
+
+        //     xhr.onload = function () {
+        //         if (xhr.status === 200) {
+        //             const response = JSON.parse(xhr.responseText);
+        //             attachment.setAttributes({
+        //                 url: response.url
+        //             });
+        //         }
+        //     };
+
+        //     xhr.send(formData);
+        // }
+    </script>
 @endsection
+
+

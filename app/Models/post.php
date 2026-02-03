@@ -4,7 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class post extends Model
+class Post extends Model
 {
-    //
+    protected $fillable = [
+        'title',
+        'image',
+        'slug',
+        'body',
+        'slug',
+    ];
 }

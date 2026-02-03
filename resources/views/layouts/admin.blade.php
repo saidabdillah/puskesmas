@@ -31,6 +31,10 @@
 			<script src="https:oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js') }}"></script>
 			<script src="https:oss.maxcdn.com/respond/1.4.2/respond.min.js') }}"></script>
 		<![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.8/dist/trix.css">
+    <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
+
     <style>
         html, body {
         height: 100%;
@@ -52,9 +56,11 @@
     footer.footer {
         flex-shrink: 0;
     }
+
+    trix-toolbar [data-trix-button-group="file-tools"] {
+        display: none;
+    }
     </style>
-    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/47.4.0/ckeditor5.css" />
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 
 <body>
@@ -254,7 +260,18 @@
     <!--! Footer Script !-->
     <!--! ================================================================ !-->
     <!--! BEGIN: Vendors JS !-->
-
+    <script src="{{ asset('assets/vendor/js/vendors.min.js') }}"></script>
+    <!-- vendors.min.js') }} {always must need to be top} -->
+    <script src="{{ asset('assets/vendor/js/daterangepicker.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/js/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/js/circle-progress.min.js') }}"></script>
+    <!--! END: Vendors JS !-->
+    <!--! BEGIN: Apps Init  !-->
+    <script src="{{ asset('assets/js/common-init.min.js') }}"></script>
+    <script src="{{ asset('assets/js/dashboard-init.min.js') }}"></script>
+    <!--! END: Apps Init !-->
+    <!--! BEGIN: Theme Customizer  !-->
+    <script src="{{ asset('assets/js/theme-customizer-init.min.js') }}"></script>
     <!--! END: Theme Customizer !-->
 </body>
 
