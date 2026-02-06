@@ -33,76 +33,77 @@
             <!-- [ Main Content ] start -->
             <div class="main-content">
                 <div class="row">
-
-                    <!--! BEGIN: [Team Progress] !-->
-                    <div class="col-12">
+                    <div class="col-lg-12">
                         <div class="card stretch stretch-full">
-                            <div class="card-header">
-                                <h5 class="card-title">Berita</h5>
-                                @if ($errors->any())
-                                    <div class="alert alert-danger">
-                                        <ul>
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-hover" id="paymentList">
+                                        <thead>
+                                            <tr>
+                                                <th class="wd-30">
+                                                    <div class="btn-group mb-1">
+                                                        <div class="custom-control custom-checkbox ms-1">
+                                                            <input type="checkbox" class="custom-control-input" id="checkAllPayment">
+                                                            <label class="custom-control-label" for="checkAllPayment"></label>
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                                <th>Judul</th>
+                                                <th>Tanggal</th>
+                                                <th class="text-end">Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($posts as $post)
+                                                <tr class="single-item">
+                                                    <td>
+                                                        <div class="item-checkbox ms-1">
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input checkbox" id="checkBox_1">
+                                                                <label class="custom-control-label" for="checkBox_1"></label>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>{{ Str::limit($post->title, 50) }}</td>
+                                                    <td>{{ $post->created_at->diffForHumans() }}</td>
+                                                    <td>
+                                                        <div class="hstack gap-2 justify-content-end">
+                                                            <a href="{{ route('posts.index', $post->slug) }}" class="avatar-text avatar-md">
+                                                                <i class="feather feather-eye"></i>
+                                                            </a>
+                                                            <a href="{{ route('admin.post.edit', $post->slug) }}" class="avatar-text avatar-md">
+                                                                <i class="feather feather-edit"></i>
+                                                            </a>
+                                                            <a href="invoice-view.html" class="avatar-text avatar-md">
+                                                                <i class="feather feather-trash-2"></i>
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
                                             @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
-                                <div class="card-header-action">
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-                            <form method="POST" action="{{ route('admin.berita.store') }}" enctype="multipart/form-data" class="card-body custom-card-action">
-                                @csrf
-                                <div class="form-group mb-4">
-                                    <label class="form-label">Judul</label>
-                                    <input type="text" class="form-control" name="title">
-                                </div>
-
-                                <img id="img-preview"
-                                    class="img-fluid rounded d-none"
-                                    style="max-height: 200px;">
-
-                                <div class="mb-3">
-                                    <label class="form-label">Upload Gambar</label>
-                                    <input type="file"
-                                        name="image"
-                                        class="form-control"
-                                        accept="image/*"
-                                        onchange="previewImage(this)">
-                                </div>
-                                <label for="x" class="form-label">body</label>
-                                <input id="x" type="hidden" name="body">
-                                <trix-editor input="x"></trix-editor>
-                                <button type="submit" class="btn btn-primary mt-3">
-                                    Simpan
-                                </button>
-                            </form>
                         </div>
                     </div>
-                    <!--! END: [Team Progress] !-->
                 </div>
             </div>
             <!-- [ Main Content ] end -->
         </div>
-        <!-- [ Footer ] start -->
-        <footer class="footer">
-            <p class="fs-11 text-muted fw-medium text-uppercase mb-0 copyright">
-                <span>Copyright ©</span>
-                <script>
-                    document.write(new Date().getFullYear());
-                </script>
-            </p>
-            <p><span>By: <a target="_blank" href="https://wrapbootstrap.com/user/theme_ocean" target="_blank">theme_ocean</a></span> • <span>Distributed by: <a target="_blank" href="https://themewagon.com" target="_blank">ThemeWagon</a></span></p>
-            <div class="d-flex align-items-center gap-4">
-                <a href="javascript:void(0);" class="fs-11 fw-semibold text-uppercase">Help</a>
-                <a href="javascript:void(0);" class="fs-11 fw-semibold text-uppercase">Terms</a>
-                <a href="javascript:void(0);" class="fs-11 fw-semibold text-uppercase">Privacy</a>
-            </div>
-        </footer>
-        <!-- [ Footer ] end -->
+
+        @include('components.admin.footer')
 
 
     </main>
+
+    @push('scripts')
+    <script src="{{ asset('assets/vendor/js/vendors.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/js/dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/js/dataTables.bs5.min.js') }}"></script>
+    <script src="{{ asset('assets/js/common-init.min.js') }}"></script>
+    <script src="{{ asset('assets/js/payment-init.min.js') }}"></script>
+    <script src="{{ asset('assets/js/theme-customizer-init.min.js') }}"></script>
 
     <script>
         document.addEventListener("trix-file-accept", function (event) {
@@ -155,6 +156,7 @@
         //     xhr.send(formData);
         // }
     </script>
+    @endpush
 @endsection
 
 

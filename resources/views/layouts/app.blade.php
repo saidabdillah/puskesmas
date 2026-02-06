@@ -31,6 +31,18 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <link href="{{ asset('assets/css/main.css')}}" rel="stylesheet" />
 
+    <style>
+        .post-body {
+            text-align: justify;
+            line-height: 1.8;
+        }
+
+        .post-body div,
+        .post-body p {
+            margin-bottom: 1rem;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -222,6 +234,7 @@
     <script src="{{ asset('assets/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+
 
     <!-- Main JS File -->
     <script src="{{ asset('assets/js/main.js') }}"></script>

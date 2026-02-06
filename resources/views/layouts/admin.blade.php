@@ -20,6 +20,7 @@
     <!--! END: Bootstrap CSS-->
     <!--! BEGIN: Vendors CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/css/vendors.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/css/dataTables.bs5.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/css/daterangepicker.min.css') }}" />
     <!--! END: Vendors CSS-->
     <!--! BEGIN: Custom CSS-->
@@ -260,19 +261,9 @@
     <!--! Footer Script !-->
     <!--! ================================================================ !-->
     <!--! BEGIN: Vendors JS !-->
-    <script src="{{ asset('assets/vendor/js/vendors.min.js') }}"></script>
-    <!-- vendors.min.js') }} {always must need to be top} -->
-    <script src="{{ asset('assets/vendor/js/daterangepicker.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/js/apexcharts.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/js/circle-progress.min.js') }}"></script>
-    <!--! END: Vendors JS !-->
-    <!--! BEGIN: Apps Init  !-->
-    <script src="{{ asset('assets/js/common-init.min.js') }}"></script>
-    <script src="{{ asset('assets/js/dashboard-init.min.js') }}"></script>
-    <!--! END: Apps Init !-->
-    <!--! BEGIN: Theme Customizer  !-->
-    <script src="{{ asset('assets/js/theme-customizer-init.min.js') }}"></script>
-    <!--! END: Theme Customizer !-->
+    @stack('scripts')
+
+
 </body>
 
 </html>
